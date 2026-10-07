@@ -114,3 +114,65 @@ function gameObject() {
         },
     };
 }
+//numPointsScored
+const numPointsScored = (playerName) => {
+  const game = gameObject();
+  const allPlayers = { ...game.home.players, ...game.away.players };
+  return allPlayers[playerName].points;
+};
+//shoe size
+const shoeSize = (playerName) => {
+  const game = gameObject();
+  const allPlayers = { ...game.home.players, ...game.away.players };
+  return allPlayers[playerName].shoe;
+};
+
+//teamcolors
+const teamcolors =(teamName) => {
+    const teams = gameObject();
+    if (teams.home.teamName === teamName) {
+        return teams.home.colors;
+    }
+    return teams.away.colors;
+};
+console.log(teamcolors("Charlotte Hornets"));
+
+//teamNames
+const teamNames = () => {
+  const team = gameObject();
+  return [team.home.teamName, team.away.teamName];
+};
+
+//PlayerNumbers
+const playerNumbers = (teamName) => {
+    const numbers = gameObject();
+    let team = game.away;
+    if(numbers.home.teamName === teamName) {
+        team = game.home;
+    }
+   return Object.values(team.players).map((player) => player.number);
+};
+
+//players stats
+
+const playerStats = (playerName) => {
+    const stats = gameObject();
+    if (stats.home.players[playerName]) {
+        return stats.home.players[playerName];
+    }
+    return stats.away.players[playerName];
+};
+console.log(playerStats("Alan Anderson"));
+ 
+//bigShoeRebounds
+const bigShoeRebounds = () => {
+    const shoeSize = gameObject();
+    let biggestShoe = 0;
+    let rebounds = 0;
+            }
+        }
+    }
+    return rebounds;
+};
+
+
