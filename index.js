@@ -117,25 +117,24 @@ function gameObject() {
 //numPointsScored
 const numPointsScored = (playerName) => {
   const game = gameObject();
-  const allPlayers = { ...game.home.players, ...game.away.players };
+  const allPlayers = Object.assign({}, game.home.players, game.away.players);
   return allPlayers[playerName].points;
 };
 //shoe size
 const shoeSize = (playerName) => {
   const game = gameObject();
-  const allPlayers = { ...game.home.players, ...game.away.players };
+  const allPlayers = Object.assign({}, game.home.players, game.away.players);
   return allPlayers[playerName].shoe;
 };
 
 //teamcolors
-const teamcolors =(teamName) => {
+const teamColors =(teamName) => {
     const teams = gameObject();
     if (teams.home.teamName === teamName) {
         return teams.home.colors;
     }
     return teams.away.colors;
 };
-console.log(teamcolors("Charlotte Hornets"));
 
 //teamNames
 const teamNames = () => {
@@ -146,9 +145,9 @@ const teamNames = () => {
 //PlayerNumbers
 const playerNumbers = (teamName) => {
     const numbers = gameObject();
-    let team = game.away;
+    let team = numbers.away;
     if(numbers.home.teamName === teamName) {
-        team = game.home;
+        team = numbers.home;
     }
    return Object.values(team.players).map((player) => player.number);
 };
@@ -162,17 +161,21 @@ const playerStats = (playerName) => {
     }
     return stats.away.players[playerName];
 };
-console.log(playerStats("Alan Anderson"));
  
 //bigShoeRebounds
-const bigShoeRebounds = () => {
-    const shoeSize = gameObject();
-    let biggestShoe = 0;
-    let rebounds = 0;
-            }
-        }
-    }
-    return rebounds;
-};
+function bigShoeRebounds() {
+  const shoeSize = gameObject();
+  let biggestShoe = 0;
+  let biggestPlayer;
 
-
+  Object.values(shoeSize).forEach(team => {
+    Object.values(team.players).forEach(player => {
+      if (player.shoe > biggestShoe) {
+        biggestShoe = player.shoe;
+        biggestPlayer = player;
+      }
+    });
+  });
+  return biggestPlayer.rebounds;
+}
+console.log(bigShoeRebounds());
